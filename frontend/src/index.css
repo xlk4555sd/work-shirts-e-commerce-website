@@ -1,0 +1,95 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Caveat:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    :root {
+        --radius: 0.75rem;
+        --background: 0.98 0.01 85;
+        --foreground: 0.25 0.02 85;
+        --card: 1 0 0;
+        --card-foreground: 0.25 0.02 85;
+        --popover: 1 0 0;
+        --popover-foreground: 0.25 0.02 85;
+        --primary: 0.55 0.12 200;
+        --primary-foreground: 0.98 0.01 85;
+        --secondary: 0.92 0.02 85;
+        --secondary-foreground: 0.35 0.02 85;
+        --muted: 0.95 0.01 85;
+        --muted-foreground: 0.55 0.02 85;
+        --accent: 0.88 0.03 120;
+        --accent-foreground: 0.35 0.02 85;
+        --destructive: 0.65 0.18 25;
+        --destructive-foreground: 0.98 0.01 85;
+        --border: 0.88 0.02 85;
+        --input: 0.92 0.02 85;
+        --ring: 0.55 0.12 200;
+        --chart-1: 0.65 0.15 200;
+        --chart-2: 0.7 0.12 120;
+        --chart-3: 0.6 0.18 25;
+        --chart-4: 0.75 0.1 280;
+        --chart-5: 0.68 0.14 60;
+        --sidebar: 0.98 0.01 85;
+        --sidebar-foreground: 0.25 0.02 85;
+        --sidebar-primary: 0.55 0.12 200;
+        --sidebar-primary-foreground: 0.98 0.01 85;
+        --sidebar-accent: 0.92 0.02 85;
+        --sidebar-accent-foreground: 0.35 0.02 85;
+        --sidebar-border: 0.88 0.02 85;
+        --sidebar-ring: 0.55 0.12 200;
+    }
+
+    .dark {
+        --background: 0.15 0.02 85;
+        --foreground: 0.95 0.01 85;
+        --card: 0.2 0.02 85;
+        --card-foreground: 0.95 0.01 85;
+        --popover: 0.25 0.02 85;
+        --popover-foreground: 0.95 0.01 85;
+        --primary: 0.7 0.12 200;
+        --primary-foreground: 0.15 0.02 85;
+        --secondary: 0.25 0.02 85;
+        --secondary-foreground: 0.95 0.01 85;
+        --muted: 0.25 0.02 85;
+        --muted-foreground: 0.65 0.02 85;
+        --accent: 0.35 0.03 120;
+        --accent-foreground: 0.95 0.01 85;
+        --destructive: 0.7 0.18 25;
+        --destructive-foreground: 0.15 0.02 85;
+        --border: 0.3 0.02 85;
+        --input: 0.3 0.02 85;
+        --ring: 0.7 0.12 200;
+        --chart-1: 0.7 0.15 200;
+        --chart-2: 0.75 0.12 120;
+        --chart-3: 0.65 0.18 25;
+        --chart-4: 0.8 0.1 280;
+        --chart-5: 0.73 0.14 60;
+        --sidebar: 0.2 0.02 85;
+        --sidebar-foreground: 0.95 0.01 85;
+        --sidebar-primary: 0.7 0.12 200;
+        --sidebar-primary-foreground: 0.15 0.02 85;
+        --sidebar-accent: 0.25 0.02 85;
+        --sidebar-accent-foreground: 0.95 0.01 85;
+        --sidebar-border: 0.3 0.02 85;
+        --sidebar-ring: 0.7 0.12 200;
+    }
+
+    * {
+        @apply border-border;
+    }
+    body {
+        @apply bg-background text-foreground font-body;
+    }
+}
+
+@layer utilities {
+    .font-heading {
+        font-family: 'Caveat', cursive;
+    }
+    
+    .font-body {
+        font-family: 'Inter', sans-serif;
+    }
+}

@@ -1,0 +1,124 @@
+type http_request_result = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type http_header = 
+ record {
+   name: text;
+   value: text;
+ };
+type UserRole = 
+ variant {
+   admin;
+   guest;
+   user;
+ };
+type UserProfile = 
+ record {
+   email: text;
+   name: text;
+ };
+type TransformationOutput = 
+ record {
+   body: blob;
+   headers: vec http_header;
+   status: nat;
+ };
+type TransformationInput = 
+ record {
+   context: blob;
+   response: http_request_result;
+ };
+type StripeSessionStatus = 
+ variant {
+   completed: record {
+                response: text;
+                userPrincipal: opt text;
+              };
+   failed: record {error: text;};
+ };
+type StripeConfiguration = 
+ record {
+   allowedCountries: vec text;
+   secretKey: text;
+ };
+type ShoppingItem = 
+ record {
+   currency: text;
+   priceInCents: nat;
+   productDescription: text;
+   productName: text;
+   quantity: nat;
+ };
+type Product = 
+ record {
+   colors: vec text;
+   description: text;
+   id: text;
+   imagePath: text;
+   inventory: nat;
+   name: text;
+   price: nat;
+   sizes: vec text;
+ };
+type Order = 
+ record {
+   customerName: text;
+   email: text;
+   id: text;
+   items: vec CartItem;
+   shippingAddress: text;
+   status: text;
+   timestamp: int;
+   total: nat;
+ };
+type FileReference = 
+ record {
+   hash: text;
+   path: text;
+ };
+type CartItem = 
+ record {
+   productId: text;
+   quantity: nat;
+   size: text;
+ };
+type Cart = 
+ record {
+   items: vec CartItem;
+   total: nat;
+ };
+service : {
+  addProduct: (product: Product) -> ();
+  addToCart: (item: CartItem) -> ();
+  assignCallerUserRole: (user: principal, role: UserRole) -> ();
+  clearCart: () -> ();
+  createCheckoutSession: (items: vec ShoppingItem, successUrl: text,
+   cancelUrl: text) -> (text);
+  deleteProduct: (productId: text) -> ();
+  dropFileReference: (path: text) -> ();
+  getCallerUserProfile: () -> (opt UserProfile) query;
+  getCallerUserRole: () -> (UserRole) query;
+  getCart: () -> (opt Cart) query;
+  getFileReference: (path: text) -> (FileReference) query;
+  getOrder: (orderId: text) -> (opt Order) query;
+  getOrders: () -> (vec Order) query;
+  getProduct: (productId: text) -> (opt Product) query;
+  getProducts: () -> (vec Product) query;
+  getStripeSessionStatus: (sessionId: text) -> (StripeSessionStatus);
+  getUserProfile: (user: principal) -> (opt UserProfile) query;
+  initializeAccessControl: () -> ();
+  isCallerAdmin: () -> (bool) query;
+  isStripeConfigured: () -> (bool) query;
+  listFileReferences: () -> (vec FileReference) query;
+  placeOrder: (order: Order) -> ();
+  registerFileReference: (path: text, hash: text) -> ();
+  saveCallerUserProfile: (profile: UserProfile) -> ();
+  setStripeConfiguration: (config: StripeConfiguration) -> ();
+  transform: (input: TransformationInput) -> (TransformationOutput) query;
+  updateCart: (items: vec CartItem) -> ();
+  updateOrder: (order: Order) -> ();
+  updateProduct: (product: Product) -> ();
+}
